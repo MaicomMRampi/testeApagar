@@ -1,25 +1,22 @@
+require('dotenv/config');
+
 const express = require('express');
 const cors = require('cors');
+const routes = require("../server/routes/userRoutes");
 
 const app = express();
 
-// Configuração do middleware CORS
-app.use(cors({
-    origin: '*', // Permite apenas esta origem
-    // se preferir, use '*' para permitir todas as origens:
-    // origin: '*',
-}));
+// Configuração do CORS
+app.use(cors({ origin: '*' }));
 
+// Middleware para analisar requisições JSON e URL-encoded
 app.use(express.json());
 
-// Suas rotas
-app.post('/api/postusers', (req, res) => {
-    // Lógica para criar usuário
-    res.json({ message: 'Usuário criado com sucesso!' });
-});
+// Rotas
+app.use(routes);
 
-// Iniciando o servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+const port = process.env.PORT ?? 3333;
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
