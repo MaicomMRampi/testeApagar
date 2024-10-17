@@ -24,26 +24,39 @@ export default function SignUp() {
 
     const handleSubmit = async (values: FormValues) => {
         try {
-            const response = await api.post(`https://fluxodocapital.com.br/api/postusers`, values);
-            setMessage(response.data.message);
-            if (response.status === 200) {
+            const response = await fetch(`https://fluxodocapital.com.br/api/postusers`, {
+                method: 'POST', // Método HTTP
+                headers: {
+                    'Content-Type': 'application/json', // Tipo de conteúdo
+                    // 'Authorization': 'Bearer seu_token_aqui', // Adicione isso se precisar de autorização
+                },
+                body: JSON.stringify(values), // Convertendo o objeto de valores para JSON
+            });
+
+            // Verificando se a resposta foi bem-sucedida
+            if (response.ok) {
+                const data = await response.json(); // Processando a resposta como JSON
+                setMessage(data.message); // Armazenando a mensagem da resposta
                 setMessageTipo("success");
+
                 setTimeout(() => {
                     setMessage("");
                     router.push('/pages/login');
                 }, 4000);
             } else {
-                setMessage("Erro ao Criar Usuário");
+                const errorData = await response.json(); // Processando erro para obter mensagem
+                setMessage(errorData.message || "Erro ao Criar Usuário"); // Exibindo a mensagem de erro
             }
         } catch (error) {
             setMessageTipo("error");
-            setMessage("Erro ao Criar Usuário");
+            setMessage("Erro ao Criar Usuário"); // Mensagem genérica para erro
             setTimeout(() => {
                 setMessage("");
                 setMessageTipo("error");
             }, 4000);
         }
     };
+
 
     return (
         <div className="w-full min-h-screen bg-cover bg-[url('/imagens/rm378-09.jpg')] md:bg-[url('/imagens/register2.png')] flex  xs:justify-center items-center  md:justify-end md:items-center md:pr-32">
