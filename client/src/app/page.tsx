@@ -13,7 +13,7 @@ export default function Cadastro() {
     e.preventDefault(); // Prevent default form submission behavior
 
     try {
-      const response = await axios.post('https://fluxodocapital.com.br/api/postusers', {
+      const response = await axios.post('https://fluxodocapital.com.br/hostmidea/postusers', {
         nome,
         email,
         senha,
