@@ -7,7 +7,11 @@ const routes = require("../server/routes/userRoutes");
 const app = express();
 
 // Configuração do CORS
-app.use(cors({ origin: '*' }));
+app.use(cors({
+    origin: '*', // Permite qualquer origem
+    methods: ['POST'], // Permite apenas POST
+    allowedHeaders: ['Content-Type', 'Authorization'], // Permite cabeçalhos específicos
+}));
 
 // Middleware para analisar requisições JSON e URL-encoded
 app.use(express.json());
