@@ -9,7 +9,7 @@ const app = express();
 // Configuração do CORS
 app.use(cors({
     origin: '*', // Permite qualquer origem
-    methods: ['POST'], // Permite apenas POST
+    methods: ['*'], // Permite qualquer método
     allowedHeaders: ['Content-Type', 'Authorization'], // Permite cabeçalhos específicos
 }));
 
