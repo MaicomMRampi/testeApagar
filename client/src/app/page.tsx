@@ -5,7 +5,6 @@ import axios from 'axios';
 export default function Cadastro() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
   const [message, setMessage] = useState('');
   const [messageTipo, setMessageTipo] = useState('');
 
@@ -16,7 +15,6 @@ export default function Cadastro() {
       const response = await axios.post('https://teste.fluxodocapital.com.br/api/postusers', {
         nome,
         email,
-        senha,
       });
 
       if (response.status === 200) {
@@ -60,14 +58,7 @@ export default function Cadastro() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input
-            className="border p-2 rounded w-80"
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
+
           <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
             Cadastrar
           </button>
