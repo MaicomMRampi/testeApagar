@@ -1,6 +1,6 @@
 "use client"
 import { useState } from 'react';
-import axios from 'axios';
+
 
 export default function Cadastro() {
   const [nome, setNome] = useState('');
@@ -13,10 +13,16 @@ export default function Cadastro() {
     e.preventDefault(); // Prevent default form submission behavior
 
     try {
-      const response = await axios.post('https://fluxodocapital.com.br/api/postusers', {
-        nome,
-        email,
-        senha,
+      const response = await fetch('https://fluxodocapital.com.br/api/postusers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Simulando os cabeçalhos CORS (não terá efeito real)
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+        body: JSON.stringify({ nome, email, senha }),
       });
 
       if (response.status === 200) {
