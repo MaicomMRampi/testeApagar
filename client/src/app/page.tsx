@@ -16,6 +16,7 @@ export default function Cadastro() {
         nome,
         email,
       });
+      console.log("🚀 ~ handleSubmit ~ response", response)
 
       if (response.status === 200) {
         setMessageTipo('success');
@@ -27,7 +28,7 @@ export default function Cadastro() {
     } catch (error) { // Use 'unknown' type for unexpected errors
       setMessageTipo('error');
       setMessage('Erro ao criar o usuário.');
-      console.error('API Error:', error); // Optionally log the error for debugging
+      console.log('API Errofdssdfr:', error); // Optionally log the error for debugging
     }
 
     // Clear the message after 4 seconds

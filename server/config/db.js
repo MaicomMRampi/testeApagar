@@ -11,6 +11,7 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
+console.log("🚀 ~ db", db)
 
 // Teste de conexão
 db.connect((err) => {
